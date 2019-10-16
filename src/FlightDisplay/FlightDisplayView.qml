@@ -614,7 +614,7 @@ Item {
 
             model: [
                 {
-                    name:               "Plan",
+                    name:               "Plan_To_Pipe_Bomb",
                     iconSource:         "/qmlimages/Plan.svg",
                     buttonVisible:      true,
                     buttonEnabled:      true,
