@@ -96,6 +96,7 @@
 #include "GeoTagController.h"
 #include "LogReplayLink.h"
 #include "VehicleObjectAvoidance.h"
+#include "MyObject.h"
 
 #if defined(QGC_ENABLE_PAIRING)
 #include "PairingManager.h"
@@ -523,6 +524,8 @@ void QGCApplication::_initCommon()
     qmlRegisterType<MAVLinkInspectorController>     (kQGCControllers,                       1, 0, "MAVLinkInspectorController");
     qmlRegisterType<SyslinkComponentController>     (kQGCControllers,                       1, 0, "SyslinkComponentController");
     qmlRegisterType<EditPositionDialogController>   (kQGCControllers,                       1, 0, "EditPositionDialogController");
+
+    qmlRegisterType<MyObject>("QGroundControl.MyObject", 1, 0, "MyObject");
 
 #ifndef __mobile__
 #ifndef NO_SERIAL_LINK

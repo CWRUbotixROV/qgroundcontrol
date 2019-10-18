@@ -21,11 +21,16 @@ import QGroundControl.Controls                  1.0
 import QGroundControl.Palette                   1.0
 import QGroundControl.Vehicle                   1.0
 import QGroundControl.FlightMap                 1.0
+import QGroundControl.MyObject                  1.0
 
 /// This provides the smarts behind the guided mode commands, minus the user interface. This way you can change UI
 /// without affecting the underlying functionality.
 Item {
     id: _root
+
+    MyObject {
+        id: myobject
+    }
 
     property var missionController
     property var confirmDialog
@@ -51,6 +56,7 @@ Item {
     readonly property string setWaypointTitle:              qsTr("Set Waypoint")
     readonly property string gotoTitle:                     qsTr("Go To Location")
     readonly property string vtolTransitionTitle:           qsTr("VTOL Transition")
+    readonly property string sayHelloTitle:                 qsTr("Say Hello Function Call Title")
 
     readonly property string armMessage:                        qsTr("Arm the vehicle.")
     readonly property string disarmMessage:                     qsTr("Disarm the vehicle")
@@ -70,6 +76,7 @@ Item {
     readonly property string mvPauseMessage:                    qsTr("Pause all vehicles at their current position.")
     readonly property string vtolTransitionFwdMessage:          qsTr("Transition VTOL to fixed wing flight.")
     readonly property string vtolTransitionMRMessage:           qsTr("Transition VTOL to multi-rotor flight.")
+    readonly property string sayHelloMessage:                   qsTr("Say Hello Function Call Message")
 
     readonly property int actionRTL:                        1
     readonly property int actionLand:                       2
@@ -92,6 +99,7 @@ Item {
     readonly property int actionMVStartMission:             19
     readonly property int actionVtolTransitionToFwdFlight:  20
     readonly property int actionVtolTransitionToMRFlight:   21
+    readonly property int actionSayHello:                   22
 
     property bool showEmergenyStop:     _guidedActionsEnabled && !_hideEmergenyStop && _vehicleArmed && _vehicleFlying
     property bool showArm:              _guidedActionsEnabled && !_vehicleArmed
@@ -341,6 +349,10 @@ Item {
             confirmDialog.message = vtolTransitionMRMessage
             confirmDialog.hideTrigger = true
             break
+        case actionSayHello:
+            confirmDialog.title = sayHelloTitle
+            confirmDialog.message = sayHelloMessage
+            break;
         default:
             console.warn("Unknown actionCode", actionCode)
             return
@@ -416,6 +428,9 @@ Item {
         case actionVtolTransitionToMRFlight:
             activeVehicle.vtolInFwdFlight = false
             break
+        case actionSayHello:
+            myobject.sayHello();
+            break;
         default:
             console.warn(qsTr("Internal error: unknown actionCode"), actionCode)
             break

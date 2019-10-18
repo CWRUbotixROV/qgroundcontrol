@@ -615,6 +615,13 @@ Item {
             model: [
                 {
                     name:               "Plan_To_Pipe_Bomb",
+                    iconSource:         "/qmlimages/check.svg",
+                    buttonVisible:      true,
+                    buttonEnabled:      true,
+                    action:             _guidedController.actionSayHello
+                },
+                {
+                    name:               "Spaces Test",
                     iconSource:         "/qmlimages/Plan.svg",
                     buttonVisible:      true,
                     buttonEnabled:      true,
@@ -664,9 +671,9 @@ Item {
 
             onClicked: {
                 guidedActionsController.closeAll()
-                if(index === 0) {
+                if(index === 1){
                     mainWindow.showPlanView()
-                } else if(index === 1) {
+                } else if(index === 2) {
                     checklistDropPanel.open()
                 } else {
                     var action = model[index].action
