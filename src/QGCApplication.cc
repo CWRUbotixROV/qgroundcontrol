@@ -34,7 +34,7 @@
 #include <QDebug>
 
 #include "VideoStreaming.h"
-
+#include "dostuff.h"
 #include "QGC.h"
 #include "QGCApplication.h"
 #include "CmdLineOptParser.h"
@@ -140,6 +140,11 @@ static QObject* screenToolsControllerSingletonFactory(QQmlEngine*, QJSEngine*)
 {
     ScreenToolsController* screenToolsController = new ScreenToolsController;
     return screenToolsController;
+}
+
+static QObject* doStuffSingletonFactory(QQmlEngine*, QJSEngine*){
+    DoStuff* doStuff  = new DoStuff;
+    return doStuff;
 }
 
 static QObject* qgroundcontrolQmlGlobalSingletonFactory(QQmlEngine*, QJSEngine*)
@@ -537,6 +542,7 @@ void QGCApplication::_initCommon()
     qmlRegisterSingletonType<QGroundControlQmlGlobal>   ("QGroundControl",                          1, 0, "QGroundControl",         qgroundcontrolQmlGlobalSingletonFactory);
     qmlRegisterSingletonType<ScreenToolsController>     ("QGroundControl.ScreenToolsController",    1, 0, "ScreenToolsController",  screenToolsControllerSingletonFactory);
     qmlRegisterSingletonType<ShapeFileHelper>           ("QGroundControl.ShapeFileHelper",          1, 0, "ShapeFileHelper",        shapeFileHelperSingletonFactory);
+    qmlRegisterSingletonType<DoStuff>                   ("DoStuff",                                 1, 0, "DoStuff",                doStuffSingletonFactory);
 }
 
 bool QGCApplication::_initForNormalAppBoot()
@@ -701,7 +707,7 @@ void QGCApplication::_missingParamsDisplay(void)
         }
         _missingParams.clear();
 
-        showMessage(tr("Parameters are missing from firmware. You may be running a version of firmware QGC does not work correctly with or your firmware has a bug in it. Missing params: %1").arg(params));
+//        showMessage(tr("Parameters are missing from firmware. You may be running a version of firmware QGC does not work correctly with or your firmware has a bug in it. Missing params: %1").arg(params));
     }
 }
 

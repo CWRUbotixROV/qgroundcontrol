@@ -439,12 +439,15 @@ contains (DEFINES, QGC_ENABLE_PAIRING) {
 #
 
 HEADERS += \
+#    FlightDisplayViewMultiVideo.h \
+    src/FlightDisplay/FlightDisplayViewMultiVideo.h \
     src/api/QGCCorePlugin.h \
     src/api/QGCOptions.h \
     src/api/QGCSettings.h \
     src/api/QmlComponentInfo.h \
     src/comm/MavlinkMessagesTimer.h \
     src/GPS/Drivers/src/base_station.h \
+    src/dostuff.h
 
 contains (DEFINES, QGC_ENABLE_PAIRING) {
     HEADERS += \
@@ -452,11 +455,14 @@ contains (DEFINES, QGC_ENABLE_PAIRING) {
 }
 
 SOURCES += \
+#    FlightDisplayViewMultiVideo.cc \
+    src/FlightDisplay/FlightDisplayViewMultiVideo.cc \
     src/api/QGCCorePlugin.cc \
     src/api/QGCOptions.cc \
     src/api/QGCSettings.cc \
     src/api/QmlComponentInfo.cc \
     src/comm/MavlinkMessagesTimer.cc \
+    src/dostuff.cpp
 
 contains (DEFINES, QGC_ENABLE_PAIRING) {
     SOURCES += \

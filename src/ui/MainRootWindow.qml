@@ -44,7 +44,8 @@ ApplicationWindow {
 
     //-------------------------------------------------------------------------
     //-- Global Scope Variables
-
+    // activeVehicle is an alias for QGroundControl.multiVehicleManager.activeVehicle
+    // QGroundControl is really a singleton, registered in QGCApplication.cc, of type QGroundControlQmlGlobal
     property var                activeVehicle:              QGroundControl.multiVehicleManager.activeVehicle
     property bool               communicationLost:          activeVehicle ? activeVehicle.connectionLost : false
     property string             formatedMessage:            activeVehicle ? activeVehicle.formatedMessage : ""

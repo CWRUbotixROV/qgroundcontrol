@@ -16,6 +16,7 @@ import QGroundControl               1.0
 import QGroundControl.Palette       1.0
 import QGroundControl.Controls      1.0
 import QGroundControl.ScreenTools   1.0
+import DoStuff                      1.0
 
 Rectangle {
     id:     settingsView
@@ -65,7 +66,15 @@ Rectangle {
                 visible:                !ScreenTools.isShortScreen
             }
 
+//            QGCButton {
+//                height: _buttonHeight
+//                text: "Button by Sam"
+//                Layout.fillWidth: true
+//                onClicked: DoStuff.sayHello()
+//            }
+
             Repeater {
+                //QGroundControl is the singleton registered in QCGApplication.cc
                 model:  QGroundControl.corePlugin.settingsPages
                 QGCButton {
                     height:             _buttonHeight
