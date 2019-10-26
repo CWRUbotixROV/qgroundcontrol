@@ -96,6 +96,7 @@
 #include "GeoTagController.h"
 #include "LogReplayLink.h"
 #include "VehicleObjectAvoidance.h"
+#include "ExampleButtonClass.h" // CWRUBOTIX_ROV EXAMPLE CLASS INCLUSION
 
 #if defined(QGC_ENABLE_PAIRING)
 #include "PairingManager.h"
@@ -154,6 +155,12 @@ static QObject* qgroundcontrolQmlGlobalSingletonFactory(QQmlEngine*, QJSEngine*)
 static QObject* shapeFileHelperSingletonFactory(QQmlEngine*, QJSEngine*)
 {
     return new ShapeFileHelper;
+}
+
+// CWRUBOTIX_ROV EXAMPLE SINGLETON FACTORY
+static QObject* exampleButtonClassSingletonFactory(QQmlEngine*, QJSEngine*)
+{
+    return new ExampleButtonClass;
 }
 
 QGCApplication::QGCApplication(int &argc, char* argv[], bool unitTesting)
@@ -537,6 +544,8 @@ void QGCApplication::_initCommon()
     qmlRegisterSingletonType<QGroundControlQmlGlobal>   ("QGroundControl",                          1, 0, "QGroundControl",         qgroundcontrolQmlGlobalSingletonFactory);
     qmlRegisterSingletonType<ScreenToolsController>     ("QGroundControl.ScreenToolsController",    1, 0, "ScreenToolsController",  screenToolsControllerSingletonFactory);
     qmlRegisterSingletonType<ShapeFileHelper>           ("QGroundControl.ShapeFileHelper",          1, 0, "ShapeFileHelper",        shapeFileHelperSingletonFactory);
+    // CWRUBOTIX_ROV EXAMPLE SINGLETON REGISTRATION
+    qmlRegisterSingletonType<ExampleButtonClass>        ("CWRUBOTIX_ROV.ExampleButtonClass",        1, 0, "ExampleButtonClass",     exampleButtonClassSingletonFactory);
 }
 
 bool QGCApplication::_initForNormalAppBoot()

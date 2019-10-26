@@ -12,10 +12,11 @@ import QtQuick          2.3
 import QtQuick.Controls 1.2
 import QtQuick.Layouts  1.2
 
-import QGroundControl               1.0
-import QGroundControl.Palette       1.0
-import QGroundControl.Controls      1.0
-import QGroundControl.ScreenTools   1.0
+import QGroundControl                       1.0
+import QGroundControl.Palette               1.0
+import QGroundControl.Controls              1.0
+import QGroundControl.ScreenTools           1.0
+import CWRUBOTIX_ROV.ExampleButtonClass     1.0 // CWRUBOTIX_ROB IMPORT EXAMPLE CLASS
 
 Rectangle {
     id:     settingsView
@@ -63,6 +64,13 @@ Rectangle {
                 wrapMode:               Text.WordWrap
                 horizontalAlignment:    Text.AlignHCenter
                 visible:                !ScreenTools.isShortScreen
+            }
+
+            QGCButton {
+                height: _buttonHeight
+                text: "ExampleButton"
+                Layout.fillWidth: true
+                onClicked: ExampleButtonClass.exampleFunction()
             }
 
             Repeater {
